@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Author a scenario, run it, and trace the consequences in PyScrAi.">
+  <meta name="description" content="PyScrAi is a simulation platform for designing and executing complex, decision-driven environments with persistent, traceable consequences.">
   <meta name="theme-color" content="#090d14">
   <title>PyScrAi — Consequential Simulation</title>
   <link rel="icon" href="favicon.png" type="image/png">
@@ -18,6 +18,7 @@
       <nav class="navlinks" aria-label="Main navigation">
         <a href="#architecture">System</a>
         <a href="#spectrum">Adjudication</a>
+        <a href="#workstation">Workstation</a>
         <a href="#applications">Applications</a>
       </nav>
       <span class="status"><span class="status-dot" aria-hidden="true"></span>In development</span>
@@ -28,25 +29,52 @@
     <div class="wrap">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow"><span aria-hidden="true"></span>Simulation workbench</p>
-          <h1 id="hero-title">Model the world.<br><em>Trace the outcome.</em></h1>
-          <p class="lead">Author a scenario. Run it. See exactly what changed.</p>
+          <p class="eyebrow"><span aria-hidden="true"></span>Consequential simulation</p>
+          <h1 id="hero-title">Model the world.<br>Explore consequences.<br><em>Understand outcomes.</em></h1>
+          <p class="lead">PyScrAi is a simulation platform for designing and executing complex, decision-driven environments. Human, AI, and deterministic actors operate within a shared, governed world where decisions produce persistent consequences and outcomes remain traceable to their causes. From social dynamics to strategic operations, PyScrAi provides the infrastructure to explore uncertainty, evaluate decisions, and understand how complex situations unfold.</p>
           <a class="cta" href="#spectrum">Explore adjudication <span aria-hidden="true">↓</span></a>
         </div>
 
         <figure class="system-map" aria-labelledby="architecture">
           <figcaption id="architecture" class="map-header">
-            <span>Session flow</span>
+            <span>System architecture</span>
             <span class="map-mark" aria-hidden="true"><i></i><i></i><i></i></span>
           </figcaption>
           <div class="map-field">
             <canvas id="system-graph" aria-hidden="true"></canvas>
-            <ol class="map-nodes">
-              <li class="map-node scenario"><span>Author</span><strong>Scenario</strong></li>
-              <li class="map-node runtime"><span>Run</span><strong>Session</strong></li>
-              <li class="map-node state"><span>Commit</span><strong>World state</strong></li>
-              <li class="map-node evidence"><span>Observe</span><strong>Causal evidence</strong></li>
+            <ol class="architecture-flow" aria-label="Architecture from authored definitions to committed state and causal evidence">
+              <li class="architecture-layer" data-layer="definition">
+                <div class="layer-label"><span>01</span>Author</div>
+                <div class="layer-nodes two">
+                  <div class="arch-node library"><strong>Library</strong><small>Reusable content</small></div>
+                  <div class="arch-node scenario"><strong>Scenario</strong><small>Entities · roles · rules</small></div>
+                </div>
+              </li>
+              <li class="architecture-layer" data-layer="session">
+                <div class="layer-label"><span>02</span>Instantiate</div>
+                <div class="layer-nodes"><div class="arch-node session"><strong>Session</strong><small>Isolated world · execution strategy</small></div></div>
+              </li>
+              <li class="architecture-layer" data-layer="decision">
+                <div class="layer-label"><span>03</span>Decide</div>
+                <div class="layer-nodes three">
+                  <div class="arch-node participant"><strong>Human</strong><small>Seat</small></div>
+                  <div class="arch-node participant"><strong>Deterministic</strong><small>Rules</small></div>
+                  <div class="arch-node participant"><strong>AI</strong><small>Model policy</small></div>
+                </div>
+              </li>
+              <li class="architecture-layer" data-layer="runtime">
+                <div class="layer-label"><span>04</span>Resolve</div>
+                <div class="layer-nodes"><div class="arch-node runtime"><span class="engine-kicker">Unified execution</span><strong>Runtime engine</strong><small>Operations · adjudication · authority</small></div></div>
+              </li>
+              <li class="architecture-layer" data-layer="output">
+                <div class="layer-label"><span>05</span>Record</div>
+                <div class="layer-nodes two">
+                  <div class="arch-node state"><span class="engine-kicker">Commit</span><strong>World state</strong><small>Persistent consequences</small></div>
+                  <div class="arch-node evidence"><span class="engine-kicker">Observe</span><strong>Causal evidence</strong><small>Decisions · replay · inspection</small></div>
+                </div>
+              </li>
             </ol>
+            <div class="map-legend"><span><i></i>Decision / control</span><span><i></i>State / evidence</span><span class="loop-label">↻ Next turn</span></div>
           </div>
           <div class="map-proof"><span class="check" aria-hidden="true">✓</span> Authoring to Runtime tested end to end</div>
         </figure>
@@ -54,26 +82,49 @@
 
       <section id="spectrum" class="spectrum" aria-labelledby="spectrum-title">
         <div class="section-head">
-          <div>
-            <p class="eyebrow"><span aria-hidden="true"></span>Adjudication spectrum</p>
-            <h2 id="spectrum-title">Set the rules of the run.</h2>
-          </div>
-          <div class="mode-buttons" role="group" aria-label="Consequence policy examples" hidden>
-            <button type="button" data-mode="authored" aria-pressed="true">Authored</button>
-            <button type="button" data-mode="assisted" aria-pressed="false">Assisted</button>
-            <button type="button" data-mode="reviewed" aria-pressed="false">Reviewed</button>
-            <button type="button" data-mode="automatic" aria-pressed="false">Automatic</button>
-          </div>
+          <div><p class="eyebrow"><span aria-hidden="true"></span>Execution &amp; adjudication</p><h2 id="spectrum-title">Configure how the world unfolds.</h2></div>
+          <p class="section-intro">Independent controls for decision timing, action freedom and consequence authority. One governed runtime.</p>
         </div>
-        <div class="trace" data-mode="authored" aria-live="polite">
-          <ol class="trace-path" aria-label="Path to commitment">
-            <li><span class="trace-marker" aria-hidden="true"></span><span class="node-role">Input</span><strong>Operation</strong></li>
-            <li><span class="trace-marker" aria-hidden="true"></span><span class="node-role">Consequence</span><strong id="effect">Authored effect</strong></li>
-            <li class="trace-gate"><span class="trace-marker" aria-hidden="true"></span><span class="node-role">Gate</span><strong id="gate">Runtime checks</strong></li>
-            <li class="trace-output"><span class="trace-marker" aria-hidden="true"></span><span class="node-role">Commit</span><strong>World state</strong></li>
-          </ol>
-          <p class="trace-note" id="mode-note">Rules resolve the effect.</p>
+        <div class="operational-grid">
+          <div class="control-plane">
+<section class="axis-row" aria-labelledby="axis-execution"><div class="axis-heading"><span class="axis-index">01</span><div><h3 id="axis-execution">Execution strategy</h3><p>When decisions are collected.</p></div></div><div class="axis-options" role="group" aria-label="Execution strategy"><button type="button" class="axis-choice" data-axis="execution" data-value="sequential" aria-pressed="true"><span class="choice-title">Standard sequential</span><svg class="turn-graphic" viewBox="0 0 100 37" aria-hidden="true"><rect x="4" y="6" width="23" height="16"/><rect x="38" y="6" width="23" height="16"/><rect x="72" y="6" width="23" height="16"/><path d="M27 14h11m23 0h11"/><text x="15.5" y="17">A</text><text x="49.5" y="17">B</text><text x="83.5" y="17">C</text></svg><span class="choice-kicker">Fixed turn order</span><small>Participants act in an established sequence.</small></button><button type="button" class="axis-choice" data-axis="execution" data-value="reactive" aria-pressed="false"><span class="choice-title">Reactive sequential</span><svg class="turn-graphic" viewBox="0 0 100 37" aria-hidden="true"><rect x="4" y="6" width="23" height="16"/><rect x="38" y="6" width="23" height="16"/><rect x="72" y="6" width="23" height="16"/><path d="M27 14h11m23 0h11 M32 14v15h17v-7 M66 14v15h17v-7"/><text x="15.5" y="17">A</text><text x="49.5" y="17">B</text><text x="83.5" y="17">C</text></svg><span class="choice-kicker">Refresh between actions</span><small>Later participants receive updated decision context.</small></button><button type="button" class="axis-choice" data-axis="execution" data-value="simultaneous" aria-pressed="false"><span class="choice-title">Simultaneous</span><svg class="turn-graphic" viewBox="0 0 100 37" aria-hidden="true"><rect x="4" y="1" width="23" height="10"/><rect x="4" y="13" width="23" height="10"/><rect x="4" y="25" width="23" height="10"/><path d="M27 6h25v24H27m0-12h46"/><rect x="73" y="9" width="22" height="18"/><text x="15.5" y="8.5">A</text><text x="15.5" y="20.5">B</text><text x="15.5" y="32.5">C</text><text x="84" y="21">R</text></svg><span class="choice-kicker">Shared resolution barrier</span><small>Collect decisions before resolving the batch.</small></button></div></section>
+<section class="axis-row" aria-labelledby="axis-action"><div class="axis-heading"><span class="axis-index">02</span><div><h3 id="axis-action">Action expressiveness</h3><p>What participants may attempt.</p></div></div><div class="axis-options" role="group" aria-label="Action expressiveness"><button type="button" class="axis-choice" data-axis="action" data-value="authored" aria-pressed="true"><span class="choice-title">Authored</span><span class="spectrum-ticks" aria-hidden="true"><i class="lit"></i><i class=""></i><i class=""></i></span><span class="choice-kicker">Defined operations</span><small>Select from executable, authored operations.</small></button><button type="button" class="axis-choice" data-axis="action" data-value="assisted" aria-pressed="false"><span class="choice-title">Assisted</span><span class="spectrum-ticks" aria-hidden="true"><i class="lit"></i><i class="lit"></i><i class=""></i></span><span class="choice-kicker">Interpret intent</span><small>Map expressed intent to supported operations.</small></button><button type="button" class="axis-choice" data-axis="action" data-value="generative" aria-pressed="false"><span class="choice-title">Generative</span><span class="spectrum-ticks" aria-hidden="true"><i class="lit"></i><i class="lit"></i><i class="lit"></i></span><span class="choice-kicker">Novel attempts</span><small>Propose actions beyond the authored catalog.</small></button></div></section>
+<section class="axis-row" aria-labelledby="axis-policy"><div class="axis-heading"><span class="axis-index">03</span><div><h3 id="axis-policy">Consequence source</h3><p>How effects are determined.</p></div></div><div class="axis-options" role="group" aria-label="Consequence source"><button type="button" class="axis-choice" data-axis="policy" data-value="authored" aria-pressed="true"><span class="choice-title">Authored</span><span class="spectrum-ticks" aria-hidden="true"><i class="lit"></i><i class=""></i><i class=""></i></span><span class="choice-kicker">Explicit rules</span><small>Resolve effects through authored logic.</small></button><button type="button" class="axis-choice" data-axis="policy" data-value="assisted" aria-pressed="false"><span class="choice-title">Assisted</span><span class="spectrum-ticks" aria-hidden="true"><i class="lit"></i><i class="lit"></i><i class=""></i></span><span class="choice-kicker">Declared gaps</span><small>Generate bounded values in declared gaps.</small></button><button type="button" class="axis-choice" data-axis="policy" data-value="generative" aria-pressed="false"><span class="choice-title">Generative</span><span class="spectrum-ticks" aria-hidden="true"><i class="lit"></i><i class="lit"></i><i class="lit"></i></span><span class="choice-kicker">Proposed effects</span><small>Generate effects within configured authority.</small></button></div></section>
+          <section class="axis-row review-row" aria-labelledby="axis-review"><div class="axis-heading"><span class="axis-index">04</span><div><h3 id="axis-review">Commit authority</h3><p>How generated effects are approved.</p></div></div><div class="axis-options" role="group" aria-label="Generated effect approval"><button type="button" class="axis-choice" data-axis="review" data-value="human" aria-pressed="true"><span class="choice-title">Human review</span><small>Director approval.</small></button><button type="button" class="axis-choice" data-axis="review" data-value="limited" aria-pressed="false"><span class="choice-title">Within limits</span><small>Explicit automatic bounds.</small></button><button type="button" class="axis-choice" data-axis="review" data-value="automatic" aria-pressed="false"><span class="choice-title">Automatic</span><small>Authorized commit path.</small></button></div></section>
+          </div>
+          <aside class="profile-panel" aria-labelledby="profile-title"><div class="profile-top"><span>Runtime configuration</span><i aria-hidden="true"></i></div><div class="profile-body" aria-live="polite"><p class="eyebrow"><span aria-hidden="true"></span>Illustrative configuration</p><h3 id="profile-title">Standard sequential</h3><p id="profile-summary">Ordered participation, defined operations and rule-driven consequences.</p><ol class="profile-flow"><li><span>01 / Decide</span><strong id="flow-execution">Established turn order</strong><small id="detail-execution">Participants act in sequence.</small></li><li><span>02 / Interpret</span><strong id="flow-action">Authored operations</strong><small id="detail-action">Select supported operations.</small></li><li><span>03 / Resolve</span><strong id="flow-policy">Authored consequences</strong><small id="detail-policy">Resolve through explicit rules.</small></li><li class="commit-gate"><span>04 / Authorize</span><strong id="flow-review">Runtime validation</strong><small id="detail-review">Generated-effect review is not needed for authored effects.</small></li><li class="profile-output"><span>05 / Record</span><strong>World state + causal evidence</strong><small>Accepted effects persist. Decisions and outcomes remain traceable.</small></li></ol></div><div class="profile-foot">Conceptual preview · availability depends on authored permissions and runtime validation.</div></aside>
         </div>
+      </section>
+
+      <section id="workstation" class="workstation" aria-labelledby="workstation-title">
+        <div class="section-head">
+          <div><p class="eyebrow"><span aria-hidden="true"></span>Platform in practice</p><h2 id="workstation-title">Inside the workstation.</h2></div>
+          <p class="section-intro">Real screenshots captured from the running PyScrAi application. Explore the Svelte 5 workstation as it exists today—not mockups or concept renders.</p>
+        </div>
+        <div class="gallery" aria-roledescription="carousel" aria-label="PyScrAi workstation screenshots" tabindex="0">
+          <div class="gallery-header"><span><i class="status-dot" aria-hidden="true"></i> Real application screenshots / Svelte 5</span><span id="gallery-count">01 / 04</span></div>
+          <a class="gallery-stage" id="gallery-expand" href="screenshots/author-architect.png" aria-label="Open full-size screenshot">
+            <img id="gallery-image" src="screenshots/author-architect.png" alt="Actor Daniel’s entity form with the Architect Action panel open." width="1913" height="982" loading="lazy">
+            <span class="gallery-enlarge" aria-hidden="true">↗ Full view</span>
+          </a>
+          <div class="gallery-caption">
+            <div aria-live="polite" id="gallery-caption"><h3 id="gallery-title">Entity authoring</h3><p id="gallery-description">Configure entities directly alongside the Architect’s reviewed authoring assistance.</p></div>
+            <div class="gallery-controls" role="group" aria-label="Gallery controls">
+              <button id="gallery-prev" type="button" aria-label="Previous screenshot">←</button>
+              <button id="gallery-play" type="button" aria-label="Pause slideshow">Ⅱ</button>
+              <button id="gallery-next" type="button" aria-label="Next screenshot">→</button>
+            </div>
+          </div>
+          <div class="gallery-thumbs" role="group" aria-label="Select screenshot"><button type="button" class="gallery-thumb" data-slide="0" data-src="screenshots/author-architect.png" data-title="Entity authoring" data-description="Configure entities directly alongside the Architect’s reviewed authoring assistance." data-alt="Actor Daniel’s entity form with the Architect Action panel open." aria-pressed="true"><img src="screenshots/author-architect-thumb.webp" alt="" width="420" height="230" loading="lazy"><span><small>Author &amp; Architect</small><strong>Entity authoring</strong></span></button>
+<button type="button" class="gallery-thumb" data-slide="1" data-src="screenshots/library-modules.png" data-title="Capability registry" data-description="Inspect registered Actor, entity, system and authority modules in one catalog." data-alt="Library Modules tab listing module labels, categories, modes and descriptions." aria-pressed="false"><img src="screenshots/library-modules-thumb.webp" alt="" width="420" height="230" loading="lazy"><span><small>Library</small><strong>Capability registry</strong></span></button>
+<button type="button" class="gallery-thumb" data-slide="2" data-src="screenshots/author-scheduling.png" data-title="Execution strategy" data-description="Set the scenario’s scheduling strategy and configure resolution and role permissions." data-alt="Author Systems tab showing Standard Sequential, Reactive Sequential and Simultaneous scheduling." aria-pressed="false"><img src="screenshots/author-scheduling-thumb.webp" alt="" width="420" height="230" loading="lazy"><span><small>Author</small><strong>Execution strategy</strong></span></button>
+<button type="button" class="gallery-thumb" data-slide="3" data-src="screenshots/runtime-situation.png" data-title="Session control" data-description="Monitor committed state, seat assignments, controller identity and pending decisions." data-alt="Runtime Live situation view with seats and control, committed state, and turn controls." aria-pressed="false"><img src="screenshots/runtime-situation-thumb.webp" alt="" width="420" height="230" loading="lazy"><span><small>Runtime</small><strong>Session control</strong></span></button></div>
+        </div>
+        <dialog class="gallery-dialog" id="gallery-dialog" aria-labelledby="lightbox-title">
+          <div class="lightbox-head"><strong id="lightbox-title">Entity authoring</strong><button type="button" id="lightbox-close" aria-label="Close full-size screenshot">×</button></div>
+          <img id="lightbox-image" alt="" src="screenshots/author-architect.png">
+          <div class="lightbox-controls"><button type="button" id="lightbox-prev" aria-label="Previous screenshot">← Previous</button><span id="lightbox-count">01 / 04</span><button type="button" id="lightbox-next" aria-label="Next screenshot">Next →</button></div>
+        </dialog>
       </section>
 
       <section id="applications" class="applications" aria-labelledby="applications-title">
